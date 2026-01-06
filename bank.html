@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Data Structures Q-Bank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            color: var(--dark);
+            transition: 0.3s;
+        }
+        /* English Font Override */
+        body[dir="ltr"] {
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            min-height: 90vh;
+        }
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        h1 { margin: 0; font-size: 2.2em; margin-bottom: 10px; }
+        
+        /* Language Controls */
+        .lang-controls {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .stats-bar {
+            background: #34495e;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+        .tabs {
+            display: flex;
+            background: #bdc3c7;
+            cursor: pointer;
+            overflow-x: auto;
+        }
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            transition: 0.3s;
+            border-bottom: 4px solid transparent;
+            min-width: 120px;
+            white-space: nowrap;
+        }
+        .tab:hover { background: #d5dbdb; }
+        .tab.active {
+            background: white;
+            color: var(--secondary);
+            border-bottom-color: var(--secondary);
+        }
+        .content-area {
+            padding: 30px;
+        }
+        .question-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: 0.3s;
+        }
+        /* Dynamic border based on direction */
+        html[dir="rtl"] .question-card { border-right: 5px solid var(--secondary); }
+        html[dir="ltr"] .question-card { border-left: 5px solid var(--secondary); }
+
+        .question-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .q-header {
+            font-size: 1.1em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .btn-show {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+        }
+        .btn-show:hover { background: #2980b9; }
+        .answer-panel {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 5px;
+            animation: fadeIn 0.5s;
+        }
+        .answer-text {
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        .reason-text {
+            color: #555;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        /* Bilingual Styles */
+        .bi-primary {
+            display: block;
+            font-size: 1.1em;
+            color: #000;
+            margin-bottom: 4px;
+        }
+        .bi-secondary {
+            display: block;
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            font-family: 'Tajawal', sans-serif; /* Always Arabic font for translation */
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.1em;
+            font-family: inherit;
+            outline: none;
+        }
+        .question-counter {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .category-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin: 0 10px;
+            background: #e8f4fc;
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1 id="ui-title">بنك أسئلة هياكل البيانات الشامل</h1>
+        <p id="ui-subtitle">مراجعة تفاعلية شاملة</p>
+                <p>تم بواسطة المهندس عبدالملك حسان الحاج</p>
+        
+        <div class="lang-controls">
+            <button class="lang-btn active" onclick="setLanguage('ar')">عربي</button>
+            <button class="lang-btn" onclick="setLanguage('en')">English</button>
+            <button class="lang-btn" onclick="setLanguage('bi')">English & العربية</button>
+        </div>
+    </header>
+    
+    <div class="stats-bar">
+        <span id="total-q">جاري التحميل...</span>
+        <span id="viewed-q">تمت مراجعتها: 0</span>
+    </div>
+
+    <input type="text" id="search-box" class="search-box" placeholder="بحث..." onkeyup="filterQuestions()">
+
+    <div class="tabs" id="tabs-container">
+        </div>
+
+    <div class="content-area" id="questions-container">
+        <p style="text-align: center; color: #7f8c8d;">
+            جاري تحميل الأسئلة من qBank.json...<br>
+            <small>تأكد من تشغيل هذا الملف عبر سيرفر محلي (Live Server) ليعمل بشكل صحيح.</small>
+        </p>
+    </div>
+</div>
+
+<script>
+    // --- Global State ---
+    let questions = [];
+    let currentLang = 'ar';
+    let viewedCount = 0;
+    let activeCategory = 'all';
+
+    // --- UI Dictionary ---
+    const uiTexts = {
+        ar: {
+            title: "بنك أسئلة هياكل البيانات الشامل",
+            subtitle: "مراجعة تفاعلية تغطي كافة الأنماط - Big O, Trees, Graphs, Hashing",
+            searchPlaceholder: "بحث عن سؤال (مثال: Graph, Hash, AVL)...",
+            totalLabel: "عدد الأسئلة المعروضة:",
+            viewedLabel: "تمت مراجعتها:",
+            showAns: "إظهار الإجابة",
+            hideAns: "إخفاء الإجابة",
+            categories: {
+                'all': 'الكل',
+                'algo': 'الخوارزميات (Big O)',
+                'linear': 'خطي (Stack/Queue)',
+                'trees': 'الأشجار (Trees)',
+                'graph': 'الرسوم (Graph)',
+                'hash': 'الهاش (Hashing)',
+                'sort': 'الترتيب (Sort)',
+                'coding': 'أكواد',
+                'tricky': 'ذكاء',
+            }
+        },
+        en: {
+            title: "Comprehensive Data Structures Q-Bank",
+            subtitle: "Interactive review covering all patterns - Big O, Trees, Graphs, Hashing",
+            searchPlaceholder: "Search for a question (e.g., Graph, Hash, AVL)...",
+            totalLabel: "Questions Shown:",
+            viewedLabel: "Reviewed:",
+            showAns: "Show Answer",
+            hideAns: "Hide Answer",
+            categories: {
+                'all': 'All',
+                'algo': 'Algorithms (Big O)',
+                'linear': 'Linear (Stack/Queue)',
+                'trees': 'Trees & Heaps',
+                'graph': 'Graphs',
+                'hash': 'Hashing',
+                'sort': 'Sorting',
+                'coding': 'Coding',
+                'tricky': 'Tricky',
+            }
+        },
+        // Bilingual uses English UI mainly, but displays content in both
+        bi: {
+            title: "Data Structures Q-Bank (Bilingual)",
+            subtitle: "Interactive review / مراجعة تفاعلية",
+            searchPlaceholder: "Search / بحث...",
+            totalLabel: "Questions / الأسئلة:",
+            viewedLabel: "Reviewed / تمت:",
+            showAns: "Show Answer / إجابة",
+            hideAns: "Hide Answer / إخفاء",
+            categories: { // Using English for tabs in Bi mode
+                'all': 'All / الكل',
+                'algo': 'Algo',
+                'linear': 'Linear',
+                'trees': 'Trees',
+                'graph': 'Graphs',
+                'hash': 'Hashing',
+                'sort': 'Sorting',
+                'coding': 'Coding',
+                'tricky': 'Tricky',
+            }
+        }
+    };
+
+    // --- Initialization ---
+    document.addEventListener('DOMContentLoaded', () => {
+        loadQuestions();
+        renderTabs();
+    });
+
+    async function loadQuestions() {
+        try {
+            const response = await fetch('qBank.json');
+            if (!response.ok) throw new Error("HTTP Error " + response.status);
+            questions = await response.json();
+            filterQuestions(); // Initial render
+        } catch (error) {
+            console.error("Error loading JSON:", error);
+            document.getElementById('questions-container').innerHTML = `
+                <div style="color: red; text-align: center; padding: 20px;">
+                    <h3>تعذر تحميل ملف الأسئلة (qBank.json)</h3>
+                    <p>السبب المحتمل: CORS Policy.</p>
+                    <p><strong>الحل:</strong> يجب تشغيل الملف باستخدام سيرفر محلي (مثل إضافة Live Server في VS Code).</p>
+                    <p>تفاصيل الخطأ: ${error.message}</p>
+                </div>
+            `;
+        }
+    }
+
+    // --- Language Management ---
+    function setLanguage(lang) {
+        currentLang = lang;
+        
+        // Update Direction
+        document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+        document.documentElement.lang = (lang === 'ar') ? 'ar' : 'en';
+
+        // Update Buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.innerText.toLowerCase().includes(lang === 'ar' ? 'عربي' : (lang === 'en' ? 'english' : '&'))) {
+                if(lang === 'bi' && btn.innerText.includes('&')) btn.classList.add('active');
+                else if (lang === 'en' && btn.innerText === 'English') btn.classList.add('active');
+                else if (lang === 'ar' && btn.innerText === 'عربي') btn.classList.add('active');
+            }
+        });
+
+        // Update UI Text
+        const textObj = uiTexts[lang];
+        document.getElementById('ui-title').innerText = textObj.title;
+        document.getElementById('ui-subtitle').innerText = textObj.subtitle;
+        document.getElementById('search-box').placeholder = textObj.searchPlaceholder;
+        
+        renderTabs();
+        filterQuestions();
+    }
+
+    function renderTabs() {
+        const container = document.getElementById('tabs-container');
+        container.innerHTML = '';
+        const cats = uiTexts[currentLang].categories;
+        
+        for (const [key, label] of Object.entries(cats)) {
+            const div = document.createElement('div');
+            div.className = `tab ${activeCategory === key ? 'active' : ''}`;
+            div.innerText = label;
+            div.onclick = () => {
+                activeCategory = key;
+                renderTabs(); // re-render to highlight active
+                filterQuestions();
+            };
+            container.appendChild(div);
+        }
+    }
+
+    // --- Render Logic ---
+    function filterQuestions() {
+        const searchQuery = document.getElementById('search-box').value.toLowerCase();
+        const container = document.getElementById('questions-container');
+        container.innerHTML = '';
+
+        if (questions.length === 0) return;
+
+        // Filter Logic
+        let filtered = questions.filter(item => {
+            const matchesCat = activeCategory === 'all' || item.category === activeCategory;
+            
+            // Search in both languages for better UX
+            const qEn = item.question_en ? item.question_en.toLowerCase() : "";
+            const qAr = item.question_ar ? item.question_ar.toLowerCase() : "";
+            const matchesSearch = qEn.includes(searchQuery) || qAr.includes(searchQuery);
+
+            return matchesCat && matchesSearch;
+        });
+
+        // Update Count
+        const labels = uiTexts[currentLang];
+        document.getElementById('total-q').innerText = `${labels.totalLabel} ${filtered.length}`;
+        document.getElementById('viewed-q').innerText = `${labels.viewedLabel} ${viewedCount}`;
+
+        // Render Cards
+        filtered.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            
+            let qHTML = '', aHTML = '';
+            
+            // Prepare content based on language
+            if (currentLang === 'ar') {
+                qHTML = item.question_ar;
+                aHTML = `<div class="answer-text">${item.answer_ar}</div>
+                         <div class="reason-text">💡 ${item.reasoning}</div>`;
+            } else if (currentLang === 'en') {
+                qHTML = item.question_en;
+                aHTML = `<div class="answer-text">${item.answer_en}</div>
+                         <div class="reason-text">💡 Note: ${item.reasoning}</div>`; // Reasoning kept in AR mostly, or you can translate it
+            } else { // Bilingual
+                qHTML = `<span class="bi-primary">${item.question_en}</span>
+                         <span class="bi-secondary">${item.question_ar}</span>`;
+                aHTML = `<div class="answer-text">${item.answer_en}</div>
+                         <div class="reason-text" style="direction: rtl; text-align: right;">ترجمة الحل: ${item.answer_ar}</div>
+                         <div class="reason-text" style="direction: rtl; text-align: right;">💡 ${item.reasoning}</div>`;
+            }
+
+            card.innerHTML = `
+                <div class="q-header">
+                    <span style="color:var(--secondary)">#${item.id}</span> 
+                    ${qHTML}
+                    <span class="category-badge">${item.category}</span>
+                </div>
+                <button class="btn-show" onclick="toggleAnswer(this)">${labels.showAns}</button>
+                <div class="answer-panel">
+                    ${aHTML}
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        // Footer Counter
+        const counter = document.createElement('div');
+        counter.className = 'question-counter';
+        counter.innerHTML = `DB Size: ${questions.length} | Showing: ${filtered.length}`;
+        container.appendChild(counter);
+    }
+
+    function toggleAnswer(btn) {
+        const panel = btn.nextElementSibling;
+        const labels = uiTexts[currentLang];
+        
+        if (panel.style.display === 'block') {
+            panel.style.display = 'none';
+            btn.innerText = labels.showAns;
+        } else {
+            panel.style.display = 'block';
+            btn.innerText = labels.hideAns;
+            if (!btn.classList.contains('viewed')) {
+                viewedCount++;
+                btn.classList.add('viewed');
+                document.getElementById('viewed-q').innerText = `${labels.viewedLabel} ${viewedCount}`;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

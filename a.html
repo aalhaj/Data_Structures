@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بنك أسئلة هياكل البيانات الشامل (المحاكي الذكي)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --accent: #e74c3c;
+      --success: #27ae60;
+      --light: #ecf0f1;
+      --dark: #2c3e50;
+    }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 20px;
+      color: var(--dark);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      overflow: hidden;
+      min-height: 90vh;
+    }
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    h1 { margin: 0; font-size: 2.2em; }
+    .stats-bar {
+      background: #34495e;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      padding: 12px 20px;
+      background: #eef2f3;
+      border-bottom: 1px solid #ddd;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lang-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn-lang {
+      border: 1px solid #cfd8dc;
+      background: white;
+      color: var(--primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+    .btn-lang:hover { border-color: var(--secondary); color: var(--secondary); }
+    .btn-lang.active { background: var(--secondary); color: white; border-color: var(--secondary); }
+
+    .tabs {
+      display: flex;
+      background: #bdc3c7;
+      cursor: pointer;
+      overflow-x: auto;
+    }
+    .tab {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      transition: 0.3s;
+      border-bottom: 4px solid transparent;
+      min-width: 120px;
+      user-select: none;
+    }
+    .tab:hover { background: #d5dbdb; }
+    .tab.active {
+      background: white;
+      color: var(--secondary);
+      border-bottom-color: var(--secondary);
+    }
+    .content-area { padding: 30px; }
+    .question-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      position: relative;
+      transition: 0.3s;
+      border-right: 5px solid var(--secondary);
+    }
+    .question-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .q-header {
+      font-size: 1.1em;
+      font-weight: 800;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .btn-show {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+    }
+    .btn-show:hover { background: #2980b9; }
+    .answer-panel {
+      display: none;
+      margin-top: 15px;
+      padding: 15px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 5px;
+      animation: fadeIn 0.5s;
+    }
+    .answer-text {
+      color: var(--success);
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-bottom: 5px;
+    }
+    .reason-text { color: #555; font-size: 0.9em; }
+    .muted { color: #6b7280; font-size: 0.92em; margin-top: 6px; }
+    .code-box {
+      direction: ltr;
+      text-align: left;
+      background: #282c34;
+      color: #abb2bf;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: 'Courier New', monospace;
+      margin: 10px 0;
+      overflow-x: auto;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .search-box {
+      width: 100%;
+      padding: 15px;
+      box-sizing: border-box;
+      border: none;
+      border-bottom: 1px solid #ddd;
+      font-size: 1.1em;
+      font-family: inherit;
+      outline: none;
+    }
+    .question-counter {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .category-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.8em;
+      margin-left: 10px;
+      background: #e8f4fc;
+      color: var(--secondary);
+    }
+
+    /* when english mode: make code direction and overall direction LTR */
+    html[data-ui="en"] body { direction: ltr; }
+    html[data-ui="en"] .question-card { border-right: none; border-left: 5px solid var(--secondary); }
+    html[data-ui="en"] .category-badge { margin-left: 0; margin-right: 10px; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>بنك أسئلة هياكل البيانات الشامل</h1>
+      <p>مراجعة تفاعلية تغطي كافة الأنماط (190+ سؤالاً) - Big O, Trees, Graphs, Hashing, Sorting, Linear</p>
+      <p>تم بواسطة المهندس عبدالملك حسان الحاج</p>
+    </header>
+
+    <div class="stats-bar">
+      <span id="total-q">عدد الأسئلة: ...</span>
+      <span id="viewed-q">تمت مراجعتها: 0</span>
+      <span id="data-status">تحميل الأسئلة: ...</span>
+    </div>
+
+    <!-- Language Toolbar -->
+    <div class="toolbar">
+      <div class="lang-buttons">
+        <button class="btn-lang active" id="btn-ar" onclick="setLangMode('ar')">العربية</button>
+        <button class="btn-lang" id="btn-en" onclick="setLangMode('en')">English</button>
+        <button class="btn-lang" id="btn-enar" onclick="setLangMode('en_ar')">English + Arabic</button>
+      </div>
+      <div class="muted" id="lang-hint">الوضع الحالي: العربية</div>
+    </div>
+
+    <input
+      type="text"
+      class="search-box"
+      placeholder="بحث عن سؤال (مثال: Graph, Hash, AVL, Stack, Big O)..."
+      onkeyup="filterQuestions()"
+    >
+
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('all', event)">الكل</div>
+      <div class="tab" onclick="showTab('algo', event)">تحليل الخوارزميات (Big O)</div>
+      <div class="tab" onclick="showTab('linear', event)">خطي (Stack/Queue/LL)</div>
+      <div class="tab" onclick="showTab('trees', event)">الأشجار (Trees/Heap)</div>
+      <div class="tab" onclick="showTab('graph', event)">الرسوم البيانية (Graphs)</div>
+      <div class="tab" onclick="showTab('hash', event)">جداول الهاش (Hashing)</div>
+      <div class="tab" onclick="showTab('sort', event)">الترتيب والبحث</div>
+      <div class="tab" onclick="showTab('coding', event)">أكواد وتتبع</div>
+      <div class="tab" onclick="showTab('tricky', event)">أسئلة ذكاء</div>
+    </div>
+
+    <div class="content-area" id="questions-container">
+      <!-- سيتم تعبئة الأسئلة هنا -->
+    </div>
+  </div>
+
+  <script>
+    /**
+     * IMPORTANT:
+     * - ضع ملف qBank.json في نفس مجلد هذا الملف (نفس المسار).
+     * - بنية qBank.json المتوقعة:
+     *   {
+     *     "questions": [
+     *       { "cat":"algo", "q":"...", "q_en":"...", "a":"...", "a_en":"...", "r":"...", "r_en":"..." }
+     *     ]
+     *   }
+     */
+
+    // Global State
+    let questions = [];
+    let viewedCount = 0;
+    let currentCat = 'all';
+    let langMode = 'ar'; // 'ar' | 'en' | 'en_ar'
+
+    const container = document.getElementById('questions-container');
+
+    // UI labels depending on language mode
+    function getUILabels() {
+      if (langMode === 'en') {
+        return {
+          uiLang: 'en',
+          dir: 'ltr',
+          totalShown: 'Questions shown',
+          totalAll: 'Total questions',
+          reviewed: 'Reviewed',
+          showAnswer: 'Show Answer',
+          hideAnswer: 'Hide Answer',
+          idea: 'Note',
+          currentMode: 'Current mode: English',
+          loading: 'Loading questions',
+          loaded: 'Loaded',
+          failed: 'Failed to load qBank.json (check file path/JSON validity).'
+        };
+      }
+      if (langMode === 'en_ar') {
+        return {
+          uiLang: 'en',
+          dir: 'ltr',
+          totalShown: 'Questions shown',
+          totalAll: 'Total questions',
+          reviewed: 'Reviewed',
+          showAnswer: 'Show Answer',
+          hideAnswer: 'Hide Answer',
+          idea: 'Note',
+          currentMode: 'Current mode: English with Arabic translation',
+          loading: 'Loading questions',
+          loaded: 'Loaded',
+          failed: 'Failed to load qBank.json (check file path/JSON validity).'
+        };
+      }
+      // default Arabic UI
+      return {
+        uiLang: 'ar',
+        dir: 'rtl',
+        totalShown: 'عدد الأسئلة المعروضة',
+        totalAll: 'إجمالي الأسئلة في القاعدة',
+        reviewed: 'تمت مراجعتها',
+        showAnswer: 'إظهار الإجابة',
+        hideAnswer: 'إخفاء الإجابة',
+        idea: 'ملاحظة',
+        currentMode: 'الوضع الحالي: العربية',
+        loading: 'تحميل الأسئلة',
+        loaded: 'تم التحميل',
+        failed: 'فشل تحميل qBank.json (تحقق من المسار وصحة JSON).'
+      };
+    }
+
+    function applyUILang() {
+      const labels = getUILabels();
+
+      // html lang/dir for UI layout
+      document.documentElement.lang = (labels.uiLang === 'en' ? 'en' : 'ar');
+      document.documentElement.dir = labels.dir;
+
+      // helper attribute for CSS tweaks
+      document.documentElement.dataset.ui = labels.uiLang;
+
+      // update hint
+      document.getElementById('lang-hint').innerText = labels.currentMode;
+
+      // buttons active state
+      document.getElementById('btn-ar').classList.toggle('active', langMode === 'ar');
+      document.getElementById('btn-en').classList.toggle('active', langMode === 'en');
+      document.getElementById('btn-enar').classList.toggle('active', langMode === 'en_ar');
+    }
+
+    function setLangMode(mode) {
+      langMode = mode;
+      applyUILang();
+      // Re-render using current filters
+      const searchVal = document.querySelector('.search-box').value;
+      renderQuestions(currentCat, searchVal);
+    }
+
+    function safeText(v) {
+      // Prevent "undefined" showing in UI
+      return (typeof v === 'string' && v.trim().length) ? v : '';
+    }
+
+    function getTextByMode(item) {
+      // Returns { q, a, r, extraArabic? } based on langMode
+      const q_ar = safeText(item.q);
+      const a_ar = safeText(item.a);
+      const r_ar = safeText(item.r);
+
+      const q_en = safeText(item.q_en);
+      const a_en = safeText(item.a_en);
+      const r_en = safeText(item.r_en);
+
+      if (langMode === 'en') {
+        return {
+          q: q_en || q_ar,
+          a: a_en || a_ar,
+          r: r_en || r_ar,
+          extraArabic: null
+        };
+      }
+
+      if (langMode === 'en_ar') {
+        return {
+          q: q_en || q_ar,
+          a: a_en || a_ar,
+          r: r_en || r_ar,
+          extraArabic: {
+            q_ar: q_ar,
+            a_ar: a_ar,
+            r_ar: r_ar
+          }
+        };
+      }
+
+      // Arabic mode
+      return {
+        q: q_ar,
+        a: a_ar,
+        r: r_ar,
+        extraArabic: null
+      };
+    }
+
+    function renderQuestions(filterCat = 'all', searchQuery = '') {
+      container.innerHTML = '';
+
+      const labels = getUILabels();
+
+      const normalizedQuery = (searchQuery || '').toLowerCase();
+
+      const filtered = questions.filter(item => {
+        const matchesCat = filterCat === 'all' || item.cat === filterCat;
+
+        // Search across both languages to make search useful in any mode
+        const haystack = [
+          item.q, item.a, item.r,
+          item.q_en, item.a_en, item.r_en,
+          item.cat
+        ].filter(Boolean).join(' ').toLowerCase();
+
+        const matchesSearch = haystack.includes(normalizedQuery);
+        return matchesCat && matchesSearch;
+      });
+
+      // category badge names in Arabic (kept as-is)
+      const categoryNames = {
+        'algo': 'الخوارزميات',
+        'linear': 'هياكل خطية',
+        'trees': 'الأشجار',
+        'sort': 'الترتيب',
+        'coding': 'تتبع الأكواد',
+        'graph': 'الرسوم البيانية',
+        'hash': 'جداول الهاش',
+        'tricky': 'أسئلة ذكاء'
+      };
+
+      filtered.forEach((item, index) => {
+        const t = getTextByMode(item);
+
+        const card = document.createElement('div');
+        card.className = 'question-card';
+
+        // In EN/EN+AR modes, show "Q#" and keep category badge Arabic unless you want otherwise
+        const qPrefix = (langMode === 'ar') ? `س${index + 1}` : `Q${index + 1}`;
+
+        // Extra Arabic translation block in EN+AR mode
+        const translationBlock = (langMode === 'en_ar' && t.extraArabic) ? `
+          <div class="muted" style="margin-top:8px; line-height:1.6;">
+            <div><strong>Arabic:</strong> ${escapeHtml(t.extraArabic.q_ar)}</div>
+            <div><strong>Answer (AR):</strong> ${escapeHtml(t.extraArabic.a_ar)}</div>
+            <div><strong>Note (AR):</strong> ${escapeHtml(t.extraArabic.r_ar)}</div>
+          </div>
+        ` : '';
+
+        card.innerHTML = `
+          <div class="q-header">
+            ${qPrefix}: ${escapeHtml(t.q)}
+            <span class="category-badge">${categoryNames[item.cat] || item.cat}</span>
+          </div>
+
+          <button class="btn-show" onclick="toggleAnswer(this)">${labels.showAnswer}</button>
+
+          <div class="answer-panel">
+            <div class="answer-text">${escapeHtml(t.a)}</div>
+            <div class="reason-text">💡 ${escapeHtml(t.r)}</div>
+            ${translationBlock}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      // Update stats
+      document.getElementById('total-q').innerText = `${labels.totalShown}: ${filtered.length}`;
+
+      // Counter footer
+      const counter = document.createElement('div');
+      counter.className = 'question-counter';
+      counter.innerText = `${labels.totalAll}: ${questions.length} | ${labels.totalShown}: ${filtered.length}`;
+      container.appendChild(counter);
+    }
+
+    function toggleAnswer(btn) {
+      const panel = btn.nextElementSibling;
+      const labels = getUILabels();
+
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        btn.innerText = labels.showAnswer;
+      } else {
+        panel.style.display = 'block';
+        btn.innerText = labels.hideAnswer;
+
+        if (!btn.classList.contains('viewed')) {
+          viewedCount++;
+          btn.classList.add('viewed');
+          document.getElementById('viewed-q').innerText = `${labels.reviewed}: ${viewedCount}`;
+        }
+      }
+    }
+
+    function showTab(cat, ev) {
+      // Active tab UI
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      if (ev && ev.target) ev.target.classList.add('active');
+
+      currentCat = cat;
+
+      // Render
+      const searchVal = document.querySelector('.search-box').value;
+      renderQuestions(cat, searchVal);
+    }
+
+    function filterQuestions() {
+      const searchVal = document.querySelector('.search-box').value;
+      renderQuestions(currentCat, searchVal);
+    }
+
+    // Basic HTML escaping to avoid issues when rendering text
+    function escapeHtml(str) {
+      const s = String(str ?? '');
+      return s
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    async function loadQBank() {
+      const labels = getUILabels();
+      const statusEl = document.getElementById('data-status');
+
+      statusEl.innerText = `${labels.loading}: ...`;
+
+      try {
+        // IMPORTANT: file name as requested
+        const res = await fetch('qBank.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+
+        const data = await res.json();
+
+        // Accept either {questions:[...]} or direct array [...]
+        const qArr = Array.isArray(data) ? data : (data.questions || []);
+        if (!Array.isArray(qArr)) throw new Error('Invalid JSON schema');
+
+        questions = qArr;
+        document.getElementById('total-q').innerText = `عدد الأسئلة: ${questions.length}`;
+        statusEl.innerText = `${labels.loaded}: ${questions.length}`;
+
+        // first render
+        renderQuestions(currentCat, document.querySelector('.search-box').value);
+      } catch (e) {
+        statusEl.innerText = labels.failed;
+        container.innerHTML = `
+          <div class="question-card" style="border-right-color: var(--accent);">
+            <div class="q-header" style="color: var(--accent);">خطأ في تحميل بنك الأسئلة</div>
+            <div class="reason-text">
+              تأكد أن ملف <strong>qBank.json</strong> موجود بجانب ملف الـ HTML، وأنه JSON صحيح.
+              <div class="code-box">${escapeHtml(String(e))}</div>
+              مثال تشغيل محلي صحيح: استخدم Live Server أو أي HTTP server (فتح الملف مباشرة file:// قد يمنع fetch).
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Initial Load
+    applyUILang();
+    loadQBank();
+  </script>
+</body>
+</html>

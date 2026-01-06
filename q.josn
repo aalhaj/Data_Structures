@@ -1,0 +1,1329 @@
+{
+  "questions": [
+    {
+      "cat": "algo",
+      "q": "ما هو التعقيد الزمني لـ: 100 + N log N + N/2؟",
+      "q_en": "What is the time complexity of: 100 + N log N + N/2?",
+      "a": "O(N log N)",
+      "a_en": "O(N log N)",
+      "r": "نأخذ الحد الأكبر نمواً ونتجاهل الثوابت.",
+      "r_en": "We take the fastest-growing term and ignore constants."
+    },
+    {
+      "cat": "algo",
+      "q": "ما هو التعقيد الزمني للحلقة: for(i=1; i<n; i=i*2)؟",
+      "q_en": "What is the time complexity of the loop: for(i=1; i<n; i=i*2)?",
+      "a": "O(log N)",
+      "a_en": "O(log N)",
+      "r": "لأن العداد يتضاعف في كل خطوة ولا يزيد بمقدار ثابت.",
+      "r_en": "Because the counter doubles each step rather than increasing by a constant amount."
+    },
+    {
+      "cat": "algo",
+      "q": "ما هو التعقيد الزمني للوصول لعنصر في مصفوفة (Array Access)؟",
+      "q_en": "What is the time complexity of accessing an element in an array (Array Access)?",
+      "a": "O(1)",
+      "a_en": "O(1)",
+      "r": "المصفوفة تدعم الوصول العشوائي المباشر.",
+      "r_en": "Arrays support direct random access."
+    },
+    {
+      "cat": "algo",
+      "q": "ما هو التعقيد الزمني لطباعة قائمة متصلة حجمها N؟",
+      "q_en": "What is the time complexity of printing a linked list of size N?",
+      "a": "O(N)",
+      "a_en": "O(N)",
+      "r": "يجب زيارة كل عقدة مرة واحدة.",
+      "r_en": "You must visit each node once."
+    },
+    {
+      "cat": "algo",
+      "q": "حلقتان متداخلتان، الخارجية N والداخلية N. ما التعقيد؟",
+      "q_en": "Two nested loops: the outer runs N times and the inner runs N times. What is the complexity?",
+      "a": "O(N²)",
+      "a_en": "O(N^2)",
+      "r": "N * N = N تربيع.",
+      "r_en": "N * N = N squared."
+    },
+    {
+      "cat": "algo",
+      "q": "ما هو أفضل تعقيد زمني (Best Case) للبحث الخطي؟",
+      "q_en": "What is the best-case time complexity of linear search?",
+      "a": "O(1)",
+      "a_en": "O(1)",
+      "r": "عندما يكون العنصر المطلوب في أول مكان.",
+      "r_en": "When the target element is in the first position."
+    },
+    {
+      "cat": "algo",
+      "q": "ما هو التعقيد الزمني لحذف عنصر من بداية Linked List؟",
+      "q_en": "What is the time complexity of deleting an element from the beginning of a linked list?",
+      "a": "O(1)",
+      "a_en": "O(1)",
+      "r": "فقط نغير مؤشر الرأس (Head).",
+      "r_en": "You only update the head pointer."
+    },
+
+    {
+      "cat": "linear",
+      "q": "ما هو مبدأ عمل الـ Stack؟",
+      "q_en": "What is the operating principle of a stack?",
+      "a": "LIFO (Last In First Out)",
+      "a_en": "LIFO (Last In, First Out)",
+      "r": "الداخل آخراً خارج أولاً.",
+      "r_en": "The last element pushed is the first popped."
+    },
+    {
+      "cat": "linear",
+      "q": "ما هو مبدأ عمل الـ Queue؟",
+      "q_en": "What is the operating principle of a queue?",
+      "a": "FIFO (First In First Out)",
+      "a_en": "FIFO (First In, First Out)",
+      "r": "الداخل أولاً خارج أولاً.",
+      "r_en": "The first element enqueued is the first dequeued."
+    },
+    {
+      "cat": "linear",
+      "q": "ماذا يحدث عند الحذف من Stack فارغ؟",
+      "q_en": "What happens when you pop from an empty stack?",
+      "a": "Underflow",
+      "a_en": "Underflow",
+      "r": "طفح سفلي.",
+      "r_en": "Attempting to remove from an empty structure."
+    },
+    {
+      "cat": "linear",
+      "q": "ماذا يحدث عند الإضافة لـ Stack ممتلئ؟",
+      "q_en": "What happens when you push onto a full stack?",
+      "a": "Overflow",
+      "a_en": "Overflow",
+      "r": "طفح علوي.",
+      "r_en": "Attempting to insert when no capacity remains."
+    },
+    {
+      "cat": "linear",
+      "q": "شرط الامتلاء في الطابور الدائري (Circular Queue)؟",
+      "q_en": "What is the full condition in a circular queue?",
+      "a": "(Rear + 1) % Size == Front",
+      "a_en": "(Rear + 1) % Size == Front",
+      "r": "المؤشر الخلفي يلحق بالأمامي.",
+      "r_en": "The rear pointer catches up to the front pointer."
+    },
+    {
+      "cat": "linear",
+      "q": "كم عدد المؤشرات لكل عقدة في Doubly Linked List؟",
+      "q_en": "How many pointers does each node have in a doubly linked list?",
+      "a": "2 (Next & Prev)",
+      "a_en": "2 (Next & Prev)",
+      "r": "مؤشر للسابق ومؤشر للتالي.",
+      "r_en": "One pointer to the previous node and one to the next node."
+    },
+    {
+      "cat": "linear",
+      "q": "أين تتم الإضافة في الـ Stack؟",
+      "q_en": "Where does insertion occur in a stack?",
+      "a": "Top",
+      "a_en": "Top",
+      "r": "القمة فقط.",
+      "r_en": "Only at the top."
+    },
+    {
+      "cat": "linear",
+      "q": "أين تتم الإضافة والحذف في الـ Queue؟",
+      "q_en": "Where do insertion and deletion occur in a queue?",
+      "a": "الإضافة في Rear، الحذف من Front",
+      "a_en": "Insertion at Rear, deletion from Front",
+      "r": "نظام الطابور.",
+      "r_en": "This follows the queue discipline."
+    },
+    {
+      "cat": "linear",
+      "q": "لتحويل Infix إلى Postfix نستخدم هيكل بيانات...؟",
+      "q_en": "To convert infix to postfix, we use which data structure?",
+      "a": "Stack",
+      "a_en": "Stack",
+      "r": "لحفظ العمليات مؤقتاً.",
+      "r_en": "To temporarily store operators."
+    },
+    {
+      "cat": "linear",
+      "q": "أي هيكل بيانات أفضل للتراجع (Undo)؟",
+      "q_en": "Which data structure is best for implementing Undo?",
+      "a": "Stack",
+      "a_en": "Stack",
+      "r": "LIFO يناسب التراجع.",
+      "r_en": "LIFO naturally matches undo behavior."
+    },
+    {
+      "cat": "linear",
+      "q": "في القائمة الدائرية، آخر عقدة تشير إلى...؟",
+      "q_en": "In a circular linked list, the last node points to what?",
+      "a": "Head (الأولى)",
+      "a_en": "Head (the first node)",
+      "r": "لتكوين حلقة.",
+      "r_en": "To form a loop."
+    },
+
+    {
+      "cat": "trees",
+      "q": "ما هي طريقة الاجتياز لطباعة BST مرتبة تصاعدياً؟",
+      "q_en": "Which traversal prints a BST in ascending order?",
+      "a": "In-order",
+      "a_en": "In-order",
+      "r": "Left -> Root -> Right.",
+      "r_en": "Left -> Root -> Right."
+    },
+    {
+      "cat": "trees",
+      "q": "ما هو الحد الأقصى للعقد في شجرة ارتفاعها h؟",
+      "q_en": "What is the maximum number of nodes in a tree of height h?",
+      "a": "2^h - 1",
+      "a_en": "2^h - 1",
+      "r": "قانون.",
+      "r_en": "A known formula."
+    },
+    {
+      "cat": "trees",
+      "q": "عدد الحواف (Edges) في شجرة بـ N عقدة؟",
+      "q_en": "How many edges are in a tree with N nodes?",
+      "a": "N - 1",
+      "a_en": "N - 1",
+      "r": "كل عقدة لها أب واحد ما عدا الجذر.",
+      "r_en": "Every node has one parent except the root."
+    },
+    {
+      "cat": "trees",
+      "q": "في Max-Heap، أين يوجد أكبر عنصر؟",
+      "q_en": "In a max-heap, where is the largest element located?",
+      "a": "Root (الجذر)",
+      "a_en": "Root",
+      "r": "الأب دائماً أكبر من أبنائه.",
+      "r_en": "The parent is always greater than its children."
+    },
+    {
+      "cat": "trees",
+      "q": "معادلة الابن الأيسر في تمثيل المصفوفة (Index starts 0)؟",
+      "q_en": "In array representation (0-based index), what is the left child formula?",
+      "a": "2*i + 1",
+      "a_en": "2*i + 1",
+      "r": "والأيمن 2*i + 2.",
+      "r_en": "And the right child is 2*i + 2."
+    },
+    {
+      "cat": "trees",
+      "q": "ما هو معامل الاتزان المسموح في AVL؟",
+      "q_en": "What are the allowed balance factor values in an AVL tree?",
+      "a": "{-1, 0, 1}",
+      "a_en": "{-1, 0, 1}",
+      "r": "الفرق بين ارتفاع اليسار واليمين.",
+      "r_en": "The difference between left and right subtree heights."
+    },
+    {
+      "cat": "trees",
+      "q": "ما نوع الدوران لحالة Left-Left (LL)؟",
+      "q_en": "What rotation is used for the Left-Left (LL) case?",
+      "a": "دوران لليمين (Single Right)",
+      "a_en": "Right rotation (Single Right)",
+      "r": "لإعادة الاتزان.",
+      "r_en": "To restore balance."
+    },
+    {
+      "cat": "trees",
+      "q": "ما هي الأوراق (Leaves)؟",
+      "q_en": "What are leaves in a tree?",
+      "a": "العقد التي ليس لها أبناء",
+      "a_en": "Nodes with no children",
+      "r": "نهاية الشجرة.",
+      "r_en": "They are terminal nodes."
+    },
+    {
+      "cat": "trees",
+      "q": "ما هو تعريف Full Binary Tree؟",
+      "q_en": "What is the definition of a full binary tree?",
+      "a": "كل عقدة لها 0 أو 2 أبناء",
+      "a_en": "Each node has 0 or 2 children",
+      "r": "لا يوجد عقدة لها ابن واحد.",
+      "r_en": "No node has exactly one child."
+    },
+    {
+      "cat": "trees",
+      "q": "أين توجد المعاملات (الأرقام) في Expression Tree؟",
+      "q_en": "Where are operands (numbers) located in an expression tree?",
+      "a": "في الأوراق (Leaves)",
+      "a_en": "In the leaves",
+      "r": "والعمليات في العقد الداخلية.",
+      "r_en": "Operators are in internal nodes."
+    },
+
+    {
+      "cat": "sort",
+      "q": "أسوأ حالة لـ Quick Sort؟",
+      "q_en": "What is the worst-case time complexity of Quick Sort?",
+      "a": "O(N²)",
+      "a_en": "O(N^2)",
+      "r": "عندما تكون المصفوفة مرتبة (أو عكسياً) والمحور سيء.",
+      "r_en": "When the array is already sorted (or reverse-sorted) and the pivot choice is poor."
+    },
+    {
+      "cat": "sort",
+      "q": "خوارزمية تعتبر Stable (مستقرة)؟",
+      "q_en": "Which sorting algorithm is stable?",
+      "a": "Merge Sort",
+      "a_en": "Merge Sort",
+      "r": "تحافظ على ترتيب العناصر المتشابهة.",
+      "r_en": "It preserves the relative order of equal elements."
+    },
+    {
+      "cat": "sort",
+      "q": "أفضل خوارزمية لمصفوفة شبه مرتبة (Nearly Sorted)؟",
+      "q_en": "Which algorithm is best for a nearly sorted array?",
+      "a": "Insertion Sort",
+      "a_en": "Insertion Sort",
+      "r": "تكون O(N) تقريباً.",
+      "r_en": "It can be close to O(N) in practice for nearly sorted data."
+    },
+    {
+      "cat": "sort",
+      "q": "ماذا تفعل خطوة Partition في Quick Sort؟",
+      "q_en": "What does the partition step do in Quick Sort?",
+      "a": "وضع الـ Pivot في مكانه الصحيح",
+      "a_en": "Places the pivot in its correct position",
+      "r": "الأصغر يسار والأكبر يمين.",
+      "r_en": "Smaller elements to the left, larger to the right."
+    },
+    {
+      "cat": "sort",
+      "q": "تعقيد Merge Sort في كل الحالات؟",
+      "q_en": "What is Merge Sort's time complexity in all cases?",
+      "a": "O(N log N)",
+      "a_en": "O(N log N)",
+      "r": "ثابتة دائماً.",
+      "r_en": "It remains the same across best/average/worst cases."
+    },
+    {
+      "cat": "sort",
+      "q": "أقل عدد تبديلات (Swaps) يتم في خوارزمية...؟",
+      "q_en": "Which algorithm performs the fewest swaps?",
+      "a": "Selection Sort",
+      "a_en": "Selection Sort",
+      "r": "O(N) swaps.",
+      "r_en": "It performs O(N) swaps."
+    },
+    {
+      "cat": "sort",
+      "q": "شرط البيانات لاستخدام Binary Search؟",
+      "q_en": "What is the required condition to use binary search?",
+      "a": "يجب أن تكون مرتبة",
+      "a_en": "The data must be sorted",
+      "r": "شرط أساسي.",
+      "r_en": "This is a fundamental requirement."
+    },
+
+    {
+      "cat": "coding",
+      "q": "حول (A+B)*C إلى Postfix",
+      "q_en": "Convert (A+B)*C to postfix",
+      "a": "AB+C*",
+      "a_en": "AB+C*",
+      "r": "الجمع أولاً ثم الضرب.",
+      "r_en": "Addition first, then multiplication."
+    },
+    {
+      "cat": "coding",
+      "q": "Prefix للمعادلة A+B؟",
+      "q_en": "What is the prefix form of A+B?",
+      "a": "+AB",
+      "a_en": "+AB",
+      "r": "المشغل قبل المعاملات.",
+      "r_en": "The operator comes before the operands."
+    },
+    {
+      "cat": "coding",
+      "q": "كود: `push(5), push(10), pop()` .. ماذا تبقى في الستاك؟",
+      "q_en": "Code: `push(5), push(10), pop()` .. what remains in the stack?",
+      "a": "5",
+      "a_en": "5",
+      "r": "10 دخلت أخيراً وخرجت أولاً.",
+      "r_en": "10 was pushed last and popped first."
+    },
+    {
+      "cat": "coding",
+      "q": "في مصفوفة 2D، معادلة Row-Major؟",
+      "q_en": "In a 2D array, what is the row-major address formula?",
+      "a": "Base + (row*cols + col)*size",
+      "a_en": "Base + (row*cols + col)*size",
+      "r": "نحسب الصفوف الكاملة قبلنا.",
+      "r_en": "We count full rows before the current element."
+    },
+    {
+      "cat": "coding",
+      "q": "تتبع: `x = (f->next)->next` في قائمة 1->2->3",
+      "q_en": "Trace: `x = (f->next)->next` in the list 1->2->3",
+      "a": "3",
+      "a_en": "3",
+      "r": "قفزتين للأمام.",
+      "r_en": "Two jumps forward."
+    },
+    {
+      "cat": "coding",
+      "q": "ناتج Postfix: `5 3 + 2 *`",
+      "q_en": "Evaluate the postfix expression: `5 3 + 2 *`",
+      "a": "16",
+      "a_en": "16",
+      "r": "(5+3)=8, 8*2=16.",
+      "r_en": "(5+3)=8, then 8*2=16."
+    },
+
+    {
+      "cat": "algo",
+      "q": "التعقيد الفضائي (Space) لـ Merge Sort؟",
+      "q_en": "What is the space complexity of Merge Sort?",
+      "a": "O(N)",
+      "a_en": "O(N)",
+      "r": "تحتاج مصفوفة مساعدة.",
+      "r_en": "It requires an auxiliary array."
+    },
+    {
+      "cat": "linear",
+      "q": "قيمة Top المبدئية في المصفوفة؟",
+      "q_en": "What is the initial value of Top in an array-based stack?",
+      "a": "-1",
+      "a_en": "-1",
+      "r": "للدلالة على الفراغ.",
+      "r_en": "To indicate the stack is empty."
+    },
+    {
+      "cat": "trees",
+      "q": "ما هو Depth العقدة؟",
+      "q_en": "What is the depth of a node?",
+      "a": "عدد الحواف من الجذر إليها",
+      "a_en": "The number of edges from the root to it",
+      "r": "الجذر عمقه 0.",
+      "r_en": "The root has depth 0."
+    },
+    {
+      "cat": "sort",
+      "q": "Bubble Sort، كم عدد المقارنات؟",
+      "q_en": "In Bubble Sort, how many comparisons are there?",
+      "a": "O(N²)",
+      "a_en": "O(N^2)",
+      "r": "يقارن كل زوج متجاور.",
+      "r_en": "It repeatedly compares adjacent pairs."
+    },
+    {
+      "cat": "linear",
+      "q": "Sentinel Node فائدتها؟",
+      "q_en": "What is the benefit of a sentinel node?",
+      "a": "تبسيط شروط الحدود (أول وآخر القائمة)",
+      "a_en": "Simplifies boundary conditions (head/tail cases)",
+      "r": "عقدة وهمية.",
+      "r_en": "A dummy node."
+    },
+    {
+      "cat": "coding",
+      "q": "دالة تستدعي نفسها تسمى؟",
+      "q_en": "A function that calls itself is called what?",
+      "a": "Recursion (عودية)",
+      "a_en": "Recursion",
+      "r": "تحتاج Base Case.",
+      "r_en": "It requires a base case."
+    },
+
+    {
+      "cat": "algo",
+      "q": "ما هو التعقيد الزمني لـ Merge Sort في أسوأ حالة؟",
+      "q_en": "What is the worst-case time complexity of Merge Sort?",
+      "a": "O(N log N)",
+      "a_en": "O(N log N)",
+      "r": "Merge Sort ثابت في كل الحالات.",
+      "r_en": "Merge Sort has the same complexity in all cases."
+    },
+    {
+      "cat": "algo",
+      "q": "التعقيد الزمني لحذف عنصر من مصفوفة مرتبة (Array)؟",
+      "q_en": "What is the time complexity of deleting an element from a sorted array?",
+      "a": "O(N)",
+      "a_en": "O(N)",
+      "r": "لأننا نحتاج لإزاحة العناصر (Shifting).",
+      "r_en": "Because elements must be shifted."
+    },
+    {
+      "cat": "algo",
+      "q": "كود: for(i=0; i<n; i++) { break; }",
+      "q_en": "Code: for(i=0; i<n; i++) { break; }",
+      "a": "O(1)",
+      "a_en": "O(1)",
+      "r": "الحلقة تكسر من أول دورة.",
+      "r_en": "The loop breaks on the first iteration."
+    },
+    {
+      "cat": "algo",
+      "q": "التعقيد الزمني لإيجاد أقل قيمة في Min-Heap؟",
+      "q_en": "What is the time complexity of finding the minimum in a min-heap?",
+      "a": "O(1)",
+      "a_en": "O(1)",
+      "r": "لأنه العنصر الأول (الجذر).",
+      "r_en": "Because it is the first element (the root)."
+    },
+    {
+      "cat": "algo",
+      "q": "التعقيد الزمني للبحث في Hash Table (Best Case)؟",
+      "q_en": "What is the best-case time complexity of searching in a hash table?",
+      "a": "O(1)",
+      "a_en": "O(1)",
+      "r": "الوصول المباشر عبر دالة الهاش.",
+      "r_en": "Direct access via the hash function."
+    },
+    {
+      "cat": "algo",
+      "q": "التعقيد لطباعة شجرة ثنائية كاملة؟",
+      "q_en": "What is the time complexity of printing a complete binary tree?",
+      "a": "O(N)",
+      "a_en": "O(N)",
+      "r": "زيارة كل العقد.",
+      "r_en": "You visit every node."
+    },
+    {
+      "cat": "algo",
+      "q": "Big O لـ: N! (مضروب N)؟",
+      "q_en": "What is the Big-O for N! (factorial)?",
+      "a": "O(N!)",
+      "a_en": "O(N!)",
+      "r": "تعقيد سيء جداً (Factorial).",
+      "r_en": "A very poor (factorial) complexity."
+    },
+
+    {
+      "cat": "linear",
+      "q": "نتيجة Postfix لـ: A B - C * ؟",
+      "q_en": "What is the infix meaning of the postfix: A B - C * ?",
+      "a": "(A-B)*C",
+      "a_en": "(A-B)*C",
+      "r": "الطرح أولاً ثم الضرب.",
+      "r_en": "Subtraction first, then multiplication."
+    },
+    {
+      "cat": "linear",
+      "q": "لتحويل Recursion إلى Iteration نستخدم...؟",
+      "q_en": "To convert recursion to iteration, we use what?",
+      "a": "Stack",
+      "a_en": "Stack",
+      "r": "محاكاة عمل الذاكرة.",
+      "r_en": "To simulate the call stack."
+    },
+    {
+      "cat": "linear",
+      "q": "في Priority Queue، الحذف يتم بناءً على...؟",
+      "q_en": "In a priority queue, deletion is based on what?",
+      "a": "الأولوية (Priority)",
+      "a_en": "Priority",
+      "r": "وليس الوصول.",
+      "r_en": "Not on arrival order."
+    },
+    {
+      "cat": "linear",
+      "q": "أقل عدد من الطوابير (Queues) لتمثيل Stack؟",
+      "q_en": "What is the minimum number of queues needed to implement a stack?",
+      "a": "2",
+      "a_en": "2",
+      "r": "باستخدام عمليات نقل العناصر.",
+      "r_en": "By transferring elements between queues."
+    },
+    {
+      "cat": "linear",
+      "q": "أقل عدد من المكدسات (Stacks) لتمثيل Queue؟",
+      "q_en": "What is the minimum number of stacks needed to implement a queue?",
+      "a": "2",
+      "a_en": "2",
+      "r": "واحد للإدخال وواحد للإخراج.",
+      "r_en": "One for input and one for output."
+    },
+    {
+      "cat": "linear",
+      "q": "تعبير Prefix للمعادلة: (A+B)؟",
+      "q_en": "What is the prefix form of (A+B)?",
+      "a": "+AB",
+      "a_en": "+AB",
+      "r": "المشغل في البداية.",
+      "r_en": "The operator comes first."
+    },
+    {
+      "cat": "linear",
+      "q": "تطبيقات الـ Deque؟",
+      "q_en": "Applications of a deque?",
+      "a": "تاريخ التصفح، جدولة العمليات",
+      "a_en": "Browser history, process scheduling",
+      "r": "إضافة وحذف من الطرفين.",
+      "r_en": "Supports insertion and deletion at both ends."
+    },
+
+    {
+      "cat": "linear",
+      "q": "في Circular LL، كيف نعرف أننا وصلنا للنهاية؟",
+      "q_en": "In a circular linked list, how do we know we've reached the end?",
+      "a": "Next == Head",
+      "a_en": "Next == Head",
+      "r": "عندما يشير التالي إلى الرأس.",
+      "r_en": "When the next pointer points back to the head."
+    },
+    {
+      "cat": "linear",
+      "q": "لحذف عقدة في Doubly LL، كم مؤشر نغير؟",
+      "q_en": "To delete a node in a doubly linked list, how many pointers must be updated?",
+      "a": "2 (على الأقل)",
+      "a_en": "2 (at least)",
+      "r": "مؤشر التالي للعقدة السابقة، ومؤشر السابق للعقدة التالية.",
+      "r_en": "Update the previous node's next and the next node's prev."
+    },
+    {
+      "cat": "linear",
+      "q": "ماذا يمثل المؤشر `null` في نهاية القائمة؟",
+      "q_en": "What does a `null` pointer at the end of a linked list represent?",
+      "a": "نهاية القائمة",
+      "a_en": "End of the list",
+      "r": "لا يوجد عنصر تالٍ.",
+      "r_en": "There is no next element."
+    },
+    {
+      "cat": "linear",
+      "q": "لدمج قائمتين مرتبتين (Merge)، التعقيد هو؟",
+      "q_en": "To merge two sorted lists, what is the time complexity?",
+      "a": "O(N + M)",
+      "a_en": "O(N + M)",
+      "r": "المرور على عناصر القائمتين.",
+      "r_en": "You traverse elements of both lists."
+    },
+    {
+      "cat": "linear",
+      "q": "Header Node (Sentinel) تحتوي عادة على...؟",
+      "q_en": "A header (sentinel) node usually contains what?",
+      "a": "معلومات عن القائمة (count) أو فارغة",
+      "a_en": "List metadata (e.g., count) or may be empty",
+      "r": "لتسهيل العمليات.",
+      "r_en": "To simplify operations."
+    },
+
+    {
+      "cat": "trees",
+      "q": "الفرق بين Tree و Graph؟",
+      "q_en": "What is the difference between a tree and a graph?",
+      "a": "Tree لا تحتوي على دورات (Cycles)",
+      "a_en": "A tree has no cycles",
+      "r": "وكل عقدة لها أب واحد.",
+      "r_en": "And each node has one parent (except the root)."
+    },
+    {
+      "cat": "trees",
+      "q": "عدد الأوراق في شجرة ثنائية تامة (Full) بـ N عقدة؟",
+      "q_en": "How many leaves are in a full binary tree with N nodes?",
+      "a": "(N+1)/2",
+      "a_en": "(N+1)/2",
+      "r": "نصف العقد تقريباً أوراق.",
+      "r_en": "Roughly half the nodes are leaves."
+    },
+    {
+      "cat": "trees",
+      "q": "ما هو Threaded Binary Tree؟",
+      "q_en": "What is a threaded binary tree?",
+      "a": "تستغل مؤشرات Null للإشارة للأسلاف",
+      "a_en": "Uses null pointers as threads to predecessors/successors",
+      "r": "لتسريع الـ Traversal.",
+      "r_en": "To speed up traversal."
+    },
+    {
+      "cat": "trees",
+      "q": "في Min-Heap، العلاقة بين الابن والأب؟",
+      "q_en": "In a min-heap, what is the relationship between child and parent?",
+      "a": "Son >= Parent",
+      "a_en": "Child >= Parent",
+      "r": "الابن دائماً أكبر أو يساوي الأب.",
+      "r_en": "A child is always greater than or equal to its parent."
+    },
+    {
+      "cat": "trees",
+      "q": "لحذف الجذر من Heap، نستبدله بـ...؟",
+      "q_en": "To delete the root of a heap, we replace it with what?",
+      "a": "آخر عنصر (Last Node)",
+      "a_en": "The last element (last node)",
+      "r": "ثم نعيد الترتيب (Heapify).",
+      "r_en": "Then we restore heap order (heapify)."
+    },
+    {
+      "cat": "trees",
+      "q": "شجرة التعبير لـ A+B، الجذر هو؟",
+      "q_en": "In the expression tree for A+B, what is the root?",
+      "a": "+",
+      "a_en": "+",
+      "r": "العمليات في العقد الداخلية.",
+      "r_en": "Operators are in internal nodes."
+    },
+    {
+      "cat": "trees",
+      "q": "أقصى عمق لشجرة BST مائلة (Skewed) بـ N عقدة؟",
+      "q_en": "What is the maximum depth of a skewed BST with N nodes?",
+      "a": "N",
+      "a_en": "N",
+      "r": "أسوأ حالة.",
+      "r_en": "Worst case."
+    },
+    {
+      "cat": "trees",
+      "q": "ما هو Balance Factor في AVL؟",
+      "q_en": "What is the balance factor in an AVL tree?",
+      "a": "H(Left) - H(Right)",
+      "a_en": "H(Left) - H(Right)",
+      "r": "يجب أن يكون 1, 0, -1.",
+      "r_en": "It must be 1, 0, or -1."
+    },
+
+    {
+      "cat": "sort",
+      "q": "في Shell Sort، ماذا نستخدم؟",
+      "q_en": "In Shell Sort, what do we use?",
+      "a": "Gap Sequence",
+      "a_en": "Gap sequence",
+      "r": "ترتيب العناصر المتشابهة.",
+      "r_en": "Sorting elements that are far apart using gaps."
+    },
+    {
+      "cat": "sort",
+      "q": "خوارزمية تعتمد على توزيع الأرقام في خانات (Buckets)؟",
+      "q_en": "Which algorithm relies on distributing numbers into buckets/positions?",
+      "a": "Radix Sort",
+      "a_en": "Radix Sort",
+      "r": "غير مقارنة.",
+      "r_en": "It is a non-comparison sort."
+    },
+    {
+      "cat": "sort",
+      "q": "هل Quick Sort يحتاج ذاكرة إضافية؟",
+      "q_en": "Does Quick Sort require extra memory?",
+      "a": "نعم (O(log N) للستاك)",
+      "a_en": "Yes (O(log N) for the stack)",
+      "r": "بسبب الـ Recursion.",
+      "r_en": "Due to recursion."
+    },
+    {
+      "cat": "sort",
+      "q": "متى يكون Insertion Sort هو الأسرع؟",
+      "q_en": "When is Insertion Sort the fastest?",
+      "a": "Small N or Nearly Sorted",
+      "a_en": "Small N or nearly sorted data",
+      "r": "فعال جداً في البيانات الصغيرة.",
+      "r_en": "It is very efficient on small datasets."
+    },
+    {
+      "cat": "sort",
+      "q": "عدد التبديلات في Selection Sort لـ N عنصر؟",
+      "q_en": "How many swaps does Selection Sort make for N elements?",
+      "a": "N - 1",
+      "a_en": "N - 1",
+      "r": "تبديل واحد في كل دورة.",
+      "r_en": "One swap per pass."
+    },
+
+    {
+      "cat": "coding",
+      "q": "إذا كان `f` يشير لعقدة، `f->next` يشير لـ...؟",
+      "q_en": "If `f` points to a node, `f->next` points to what?",
+      "a": "العقدة التالية",
+      "a_en": "The next node",
+      "r": "بديهي لكن مهم في التتبع.",
+      "r_en": "Obvious but important in tracing."
+    },
+    {
+      "cat": "coding",
+      "q": "في مصفوفة C++، أول عنصر فهرسه؟",
+      "q_en": "In a C++ array, what is the index of the first element?",
+      "a": "0",
+      "a_en": "0",
+      "r": "Start index.",
+      "r_en": "Arrays are zero-indexed."
+    },
+    {
+      "cat": "coding",
+      "q": "دالة `free(p)` في C++ تفعل...؟",
+      "q_en": "What does `free(p)` do in C/C++?",
+      "a": "تحرر الذاكرة المحجوزة",
+      "a_en": "Frees allocated memory",
+      "r": "تمنع Memory Leaks.",
+      "r_en": "Helps prevent memory leaks."
+    },
+    {
+      "cat": "coding",
+      "q": "تعبير: `arr[i] == *(arr + i)` ؟",
+      "q_en": "Expression: `arr[i] == *(arr + i)` ?",
+      "a": "True (صحيح)",
+      "a_en": "True",
+      "r": "المصفوفة هي مؤشر.",
+      "r_en": "Array indexing is pointer arithmetic under the hood."
+    },
+    {
+      "cat": "coding",
+      "q": "عند تعريف `int *p`، حجم p في الذاكرة؟",
+      "q_en": "When defining `int *p`, what is the size of p in memory?",
+      "a": "4 أو 8 بايت",
+      "a_en": "4 or 8 bytes",
+      "r": "يعتمد على المعالج (32/64 bit) وليس القيمة.",
+      "r_en": "It depends on the architecture (32/64-bit), not the pointed-to type."
+    },
+
+    {
+      "cat": "algo",
+      "q": "ما هو التعقيد الزمني لحساب مضروب N (Factorial) باستخدام العودية (Recursion)؟",
+      "q_en": "What is the time complexity of computing N! using recursion?",
+      "a": "O(N)",
+      "a_en": "O(N)",
+      "r": "لأنه يقوم بـ N استدعاءات للدالة.",
+      "r_en": "Because it performs N function calls."
+    },
+    {
+      "cat": "algo",
+      "q": "ما هو التعقيد الزمني لجمع مصفوفتين ثنائيتي الأبعاد حجم كل منهما NxN؟",
+      "q_en": "What is the time complexity of adding two NxN 2D matrices?",
+      "a": "O(N²)",
+      "a_en": "O(N^2)",
+      "r": "يجب زيارة كل خلية في المصفوفتين.",
+      "r_en": "You must visit every cell in the matrices."
+    },
+    {
+      "cat": "algo",
+      "q": "دالة تطبع الأرقام الثنائية من 1 إلى N؟",
+      "q_en": "A function prints the binary representations from 1 to N. What is the complexity?",
+      "a": "O(N log N)",
+      "a_en": "O(N log N)",
+      "r": "عدد الأرقام N، وطول كل رقم log N.",
+      "r_en": "There are N numbers, and each representation has length about log N."
+    },
+    {
+      "cat": "algo",
+      "q": "ما هو التعقيد الزمني لبناء كومة (Build Heap) من مصفوفة غير مرتبة؟",
+      "q_en": "What is the time complexity of building a heap from an unsorted array?",
+      "a": "O(N)",
+      "a_en": "O(N)",
+      "r": "هذه حالة خاصة، ليست N log N.",
+      "r_en": "This is a special case; it is not N log N."
+    },
+    {
+      "cat": "algo",
+      "q": "ما هو تعقيد خوارزمية أبراج هانوي (Towers of Hanoi)؟",
+      "q_en": "What is the time complexity of the Towers of Hanoi algorithm?",
+      "a": "O(2^N)",
+      "a_en": "O(2^N)",
+      "r": "تعقيد أسي (Exponential).",
+      "r_en": "Exponential complexity."
+    },
+    {
+      "cat": "algo",
+      "q": "حلقة `for (i=1; i<n; i*=2)` وبداخلها حلقة `for (j=0; j<i; j++)`؟",
+      "q_en": "Loop `for (i=1; i<n; i*=2)` with inner loop `for (j=0; j<i; j++)` — complexity?",
+      "a": "O(N)",
+      "a_en": "O(N)",
+      "r": "خدعة! المجموع الهندسي للتكرارات يساوي 2N تقريباً.",
+      "r_en": "Trick: the geometric sum of iterations is approximately 2N."
+    },
+    {
+      "cat": "algo",
+      "q": "البحث عن قيمة في مصفوفة مرتبة باستخدام البحث الخطي؟",
+      "q_en": "Searching for a value in a sorted array using linear search — complexity?",
+      "a": "O(N)",
+      "a_en": "O(N)",
+      "r": "كونها مرتبة لا يفيد البحث الخطي في أسوأ حالة.",
+      "r_en": "Being sorted does not improve worst-case linear search."
+    },
+
+    {
+      "cat": "linear",
+      "q": "كم عدد المؤشرات الفارغة (Null Pointers) في قائمة دائرية (Circular LL)؟",
+      "q_en": "How many null pointers are in a circular linked list?",
+      "a": "0",
+      "a_en": "0",
+      "r": "لأن العقدة الأخيرة تشير للأولى.",
+      "r_en": "Because the last node points back to the first."
+    },
+    {
+      "cat": "linear",
+      "q": "ما هي أقل تكلفة لحذف عنصر من نهاية Singly Linked List؟",
+      "q_en": "What is the minimum cost (time complexity) to delete from the end of a singly linked list?",
+      "a": "O(N)",
+      "a_en": "O(N)",
+      "r": "لأننا نحتاج للوصول للعقدة قبل الأخيرة لتغيير المؤشر.",
+      "r_en": "You must reach the second-to-last node to update its next pointer."
+    },
+    {
+      "cat": "linear",
+      "q": "لتمثيل كثيرات الحدود (Polynomials)، نستخدم...؟",
+      "q_en": "To represent polynomials, we use what?",
+      "a": "Linked List",
+      "a_en": "Linked list",
+      "r": "لتوفير المساحة عند وجود أسس متباعدة.",
+      "r_en": "To save space when exponents are sparse."
+    },
+    {
+      "cat": "linear",
+      "q": "تطبيق يستخدم Circular Queue؟",
+      "q_en": "An application that uses a circular queue?",
+      "a": "جدولة المعالج (CPU Scheduling)",
+      "a_en": "CPU scheduling",
+      "r": "خوارزمية Round Robin.",
+      "r_en": "Round Robin scheduling."
+    },
+    {
+      "cat": "linear",
+      "q": "لتحويل Infix: `A + B * C` إلى Postfix؟",
+      "q_en": "Convert infix `A + B * C` to postfix",
+      "a": "ABC*+",
+      "a_en": "ABC*+",
+      "r": "الضرب (*) أقوى من الجمع (+).",
+      "r_en": "Multiplication has higher precedence than addition."
+    },
+    {
+      "cat": "linear",
+      "q": "لتحويل Infix: `(A + B) * C` إلى Postfix؟",
+      "q_en": "Convert infix `(A + B) * C` to postfix",
+      "a": "AB+C*",
+      "a_en": "AB+C*",
+      "r": "الأقواس غيرت الأولوية.",
+      "r_en": "Parentheses changed the precedence."
+    },
+    {
+      "cat": "linear",
+      "q": "ماذا تفعل الدالة `realloc()`؟",
+      "q_en": "What does `realloc()` do?",
+      "a": "تغيير حجم الذاكرة المحجوزة سابقاً",
+      "a_en": "Resizes previously allocated memory",
+      "r": "مهمة في المصفوفات الديناميكية.",
+      "r_en": "Important for dynamic arrays."
+    },
+    {
+      "cat": "linear",
+      "q": "ما هو `Memory Leak`؟",
+      "q_en": "What is a memory leak?",
+      "a": "حجز ذاكرة وعدم تحريرها (عدم عمل free)",
+      "a_en": "Allocating memory and not freeing it",
+      "r": "يؤدي لامتلاء الذاكرة.",
+      "r_en": "It can cause memory to be exhausted over time."
+    },
+
+    {
+      "cat": "trees",
+      "q": "في شجرة ثنائية، عدد العقد ذات الدرجة 2 هو X. كم عدد الأوراق؟",
+      "q_en": "In a binary tree, if the number of nodes with degree 2 is X, how many leaves are there?",
+      "a": "X + 1",
+      "a_en": "X + 1",
+      "r": "قاعدة ثابتة في الأشجار الثنائية.",
+      "r_en": "A standard identity for binary trees."
+    },
+    {
+      "cat": "trees",
+      "q": "أي اجتياز يستخدم لنسخ شجرة ثنائية (Copy Tree)؟",
+      "q_en": "Which traversal is used to copy a binary tree?",
+      "a": "Pre-order",
+      "a_en": "Pre-order",
+      "r": "لأننا ننشئ الجذر أولاً ثم الأبناء.",
+      "r_en": "Because you create the root first, then its children."
+    },
+    {
+      "cat": "trees",
+      "q": "أي اجتياز يستخدم لحذف الشجرة (Delete Tree)؟",
+      "q_en": "Which traversal is used to delete a binary tree?",
+      "a": "Post-order",
+      "a_en": "Post-order",
+      "r": "نحذف الأبناء قبل حذف الأب.",
+      "r_en": "You delete children before the parent."
+    },
+    {
+      "cat": "trees",
+      "q": "أقل ارتفاع لشجرة ثنائية تحتوي على N عقدة؟",
+      "q_en": "What is the minimum height of a binary tree with N nodes?",
+      "a": "floor(log2 N)",
+      "a_en": "floor(log2 N)",
+      "r": "عندما تكون ممتلئة تماماً.",
+      "r_en": "When it is perfectly/fully filled."
+    },
+    {
+      "cat": "trees",
+      "q": "أكبر ارتفاع لشجرة ثنائية تحتوي على N عقدة؟",
+      "q_en": "What is the maximum height of a binary tree with N nodes?",
+      "a": "N - 1",
+      "a_en": "N - 1",
+      "r": "عندما تكون مائلة (Skewed).",
+      "r_en": "When it is skewed."
+    },
+    {
+      "cat": "trees",
+      "q": "لحذف عقدة لها ابنان في BST، نستبدلها بـ...؟",
+      "q_en": "To delete a node with two children in a BST, we replace it with what?",
+      "a": "In-order Successor",
+      "a_en": "In-order successor",
+      "r": "أصغر قيمة في جهة اليمين.",
+      "r_en": "The smallest value in the right subtree."
+    },
+    {
+      "cat": "trees",
+      "q": "ما هو الشرط لتكون الشجرة `Strictly Binary`؟",
+      "q_en": "What is the condition for a tree to be strictly binary?",
+      "a": "كل عقدة لها 0 أو 2 ابن",
+      "a_en": "Each node has 0 or 2 children",
+      "r": "لا يوجد عقدة لها ابن واحد.",
+      "r_en": "No node has exactly one child."
+    },
+    {
+      "cat": "trees",
+      "q": "في شجرة التعبير، ماذا تمثل الجذور الفرعية (Sub-roots)؟",
+      "q_en": "In an expression tree, what do sub-roots represent?",
+      "a": "العمليات (Operators)",
+      "a_en": "Operators",
+      "r": "مثل +، *، -.",
+      "r_en": "Such as +, *, -."
+    },
+
+    {
+      "cat": "sort",
+      "q": "ما هي الخوارزمية التي تستخدم مبدأ `Pivot`؟",
+      "q_en": "Which sorting algorithm uses the concept of a pivot?",
+      "a": "Quick Sort",
+      "a_en": "Quick Sort",
+      "r": "لتقسيم المصفوفة.",
+      "r_en": "To partition the array."
+    },
+    {
+      "cat": "sort",
+      "q": "خوارزمية ترتيب لا تعتمد على المقارنة (Non-comparison)؟",
+      "q_en": "A sorting algorithm that does not rely on comparisons (non-comparison sort)?",
+      "a": "Radix Sort / Counting Sort",
+      "a_en": "Radix Sort / Counting Sort",
+      "r": "تعتمد على قيم الخانات.",
+      "r_en": "They rely on digit/value distribution."
+    },
+    {
+      "cat": "sort",
+      "q": "في Binary Search، أقصى عدد للمقارنات في مصفوفة حجمها 1000؟",
+      "q_en": "In binary search, what is the maximum number of comparisons for an array of size 1000?",
+      "a": "10 مقارنات",
+      "a_en": "10 comparisons",
+      "r": "لان 2^10 = 1024.",
+      "r_en": "Because 2^10 = 1024."
+    },
+    {
+      "cat": "sort",
+      "q": "ما هو Shell Sort؟",
+      "q_en": "What is Shell Sort?",
+      "a": "نسخة محسنة من Insertion Sort",
+      "a_en": "An improved version of Insertion Sort",
+      "r": "يقارن عناصر بعيدة عن بعضها.",
+      "r_en": "It compares elements that are far apart using gaps."
+    },
+    {
+      "cat": "sort",
+      "q": "لماذا نفضل Quick Sort على Merge Sort للمصفوفات؟",
+      "q_en": "Why is Quick Sort often preferred over Merge Sort for arrays?",
+      "a": "لأنه In-place (لا يحتاج ذاكرة إضافية)",
+      "a_en": "Because it is in-place (does not require extra memory)",
+      "r": "Merge Sort يحتاج مصفوفة مساعدة O(N).",
+      "r_en": "Merge Sort requires an auxiliary array of size O(N)."
+    },
+    {
+      "cat": "sort",
+      "q": "لماذا نفضل Merge Sort للقوائم المتصلة (Linked Lists)؟",
+      "q_en": "Why is Merge Sort preferred for linked lists?",
+      "a": "لأن الوصول العشوائي (Random Access) بطيء",
+      "a_en": "Because random access is slow",
+      "r": "Merge Sort يعمل بالتسلسل.",
+      "r_en": "Merge Sort works well with sequential access."
+    },
+    {
+      "cat": "sort",
+      "q": "ماذا يحدث لـ Bubble Sort إذا كانت المصفوفة مرتبة؟",
+      "q_en": "What happens to Bubble Sort if the array is already sorted?",
+      "a": "يأخذ O(N) إذا استخدمنا Flag",
+      "a_en": "It becomes O(N) if we use a flag",
+      "r": "يتوقف مبكراً.",
+      "r_en": "It stops early."
+    },
+
+    {
+      "cat": "coding",
+      "q": "ما ناتج: `int a[5] = {1,2,3}; cout << a[4];`؟",
+      "q_en": "What is the output of: `int a[5] = {1,2,3}; cout << a[4];`?",
+      "a": "0",
+      "a_en": "0",
+      "r": "المواقع غير المعرفة تهيأ بصفر تلقائياً.",
+      "r_en": "Unspecified elements are value-initialized to 0 in this initialization."
+    },
+    {
+      "cat": "coding",
+      "q": "تعبير `arr[i]` يكافئ أي تعبير بالمؤشرات؟",
+      "q_en": "The expression `arr[i]` is equivalent to which pointer expression?",
+      "a": "*(arr + i)",
+      "a_en": "*(arr + i)",
+      "r": "الوصول للقيمة عبر العنوان.",
+      "r_en": "It accesses the value via its address."
+    },
+    {
+      "cat": "coding",
+      "q": "ماذا تفعل `struct node *p = new node;`؟",
+      "q_en": "What does `struct node *p = new node;` do?",
+      "a": "تحجز مكان في الـ Heap",
+      "a_en": "Allocates memory on the heap",
+      "r": "Dynamic Allocation.",
+      "r_en": "This is dynamic allocation."
+    },
+    {
+      "cat": "coding",
+      "q": "في دالة: `void f(int &x)`، التمرير يتم بـ...؟",
+      "q_en": "In `void f(int &x)`, the argument passing is by what?",
+      "a": "Pass by Reference",
+      "a_en": "Pass by reference",
+      "r": "أي تغيير يؤثر على المتغير الأصلي.",
+      "r_en": "Any change affects the original variable."
+    },
+    {
+      "cat": "coding",
+      "q": "ناتج Postfix: `10 2 8 * + 3 -`؟",
+      "q_en": "Evaluate the postfix expression: `10 2 8 * + 3 -`",
+      "a": "23",
+      "a_en": "23",
+      "r": "2*8=16, 10+16=26, 26-3=23.",
+      "r_en": "2*8=16, 10+16=26, 26-3=23."
+    },
+    {
+      "cat": "coding",
+      "q": "كود: `top = -1;` يعني أن الستاك...؟",
+      "q_en": "Code: `top = -1;` means the stack is...?",
+      "a": "فارغ (Empty)",
+      "a_en": "Empty",
+      "r": "بداية العداد.",
+      "r_en": "This is the initial index/state."
+    },
+    {
+      "cat": "coding",
+      "q": "في شجرة المصفوفة، إذا كان الأب عند 3، الابن الأيمن عند...؟",
+      "q_en": "In an array-based heap/tree, if the parent index is 3, the right child index is...?",
+      "a": "8",
+      "a_en": "8",
+      "r": "(2 * 3) + 2 = 8.",
+      "r_en": "(2 * 3) + 2 = 8."
+    },
+    {
+      "cat": "coding",
+      "q": "ناتج `5 % 2` في الطابور الدائري؟",
+      "q_en": "What is the result of `5 % 2` (used in circular queue indexing)?",
+      "a": "1",
+      "a_en": "1",
+      "r": "باقي القسمة مهم لتحديد المواقع.",
+      "r_en": "The remainder is important for wrap-around indexing."
+    },
+
+    {
+      "cat": "graph",
+      "q": "ما هو هيكل البيانات المستخدم في BFS (المرور بالعرض)؟",
+      "q_en": "What data structure is used in BFS (Breadth-First Search)?",
+      "a": "Queue (الطابور)",
+      "a_en": "Queue",
+      "r": "لزيارة الجيران طبقة تلو الأخرى.",
+      "r_en": "To visit neighbors level by level."
+    },
+    {
+      "cat": "graph",
+      "q": "ما هو هيكل البيانات المستخدم في DFS (المرور بالعمق)؟",
+      "q_en": "What data structure is used in DFS (Depth-First Search)?",
+      "a": "Stack (المكدس)",
+      "a_en": "Stack",
+      "r": "سواء كان Recursion أو Stack صريح.",
+      "r_en": "Either recursion (implicit stack) or an explicit stack."
+    },
+    {
+      "cat": "graph",
+      "q": "أقصى عدد للحواف (Edges) في رسم بياني غير موجه بـ N عقدة؟",
+      "q_en": "What is the maximum number of edges in an undirected graph with N nodes?",
+      "a": "N * (N - 1) / 2",
+      "a_en": "N * (N - 1) / 2",
+      "r": "حالة الرسم البياني المكتمل (Complete Graph).",
+      "r_en": "This is the complete graph case."
+    },
+    {
+      "cat": "graph",
+      "q": "خوارزمية Dijkstra تستخدم لإيجاد...؟",
+      "q_en": "Dijkstra's algorithm is used to find what?",
+      "a": "أقصر مسار (Shortest Path)",
+      "a_en": "Shortest path",
+      "r": "من مصدر واحد إلى باقي العقد.",
+      "r_en": "From a single source to all other nodes."
+    },
+    {
+      "cat": "graph",
+      "q": "الفرز الطوبولوجي (Topological Sort) يعمل فقط على...؟",
+      "q_en": "Topological sort works only on what?",
+      "a": "DAG (Directed Acyclic Graph)",
+      "a_en": "DAG (Directed Acyclic Graph)",
+      "r": "رسم موجه لا يحتوي على دورات.",
+      "r_en": "A directed graph with no cycles."
+    },
+    {
+      "cat": "graph",
+      "q": "أقل عدد من الألوان لتلوين رسم بياني ثنائي (Bipartite)؟",
+      "q_en": "What is the minimum number of colors needed to color a bipartite graph?",
+      "a": "2",
+      "a_en": "2",
+      "r": "لون لكل مجموعة.",
+      "r_en": "One color for each partition."
+    },
+
+    {
+      "cat": "hash",
+      "q": "ما هو الـ Load Factor في جدول الهاش؟",
+      "q_en": "What is the load factor in a hash table?",
+      "a": "عدد العناصر / حجم الجدول",
+      "a_en": "Number of elements / table size",
+      "r": "كلما زاد، زادت التصادمات.",
+      "r_en": "As it increases, collisions tend to increase."
+    },
+    {
+      "cat": "hash",
+      "q": "أسوأ حالة للبحث في Hash Table؟",
+      "q_en": "What is the worst-case time complexity of searching in a hash table?",
+      "a": "O(N)",
+      "a_en": "O(N)",
+      "r": "عندما تحدث تصادمات كثيرة (All keys map to same index).",
+      "r_en": "When many collisions occur (e.g., all keys map to the same index)."
+    },
+    {
+      "cat": "hash",
+      "q": "حل مشكلة التصادم باستخدام Linked List يسمى...؟",
+      "q_en": "Resolving collisions using a linked list is called what?",
+      "a": "Chaining (التسلسل)",
+      "a_en": "Chaining",
+      "r": "ربط العناصر المتصادمة في قائمة.",
+      "r_en": "Colliding elements are linked together in a list."
+    },
+    {
+      "cat": "hash",
+      "q": "مشكلة التجميع (Clustering) تظهر في...؟",
+      "q_en": "Clustering occurs in which collision resolution method?",
+      "a": "Linear Probing",
+      "a_en": "Linear probing",
+      "r": "تكدس العناصر في مناطق متجاورة.",
+      "r_en": "Elements accumulate in contiguous regions."
+    },
+    {
+      "cat": "hash",
+      "q": "دالة هاش جيدة يجب أن...؟",
+      "q_en": "A good hash function should...?",
+      "a": "توزع المفاتيح بانتظام (Uniform Distribution)",
+      "a_en": "Distribute keys uniformly",
+      "r": "لتقليل التصادمات.",
+      "r_en": "To reduce collisions."
+    },
+
+    {
+      "cat": "tricky",
+      "q": "في C++، حجم المؤشر (Pointer) لنوع char مقارنة بنوع int؟",
+      "q_en": "In C++, what is the size of a pointer to char compared to a pointer to int?",
+      "a": "متساويان (4 أو 8 بايت)",
+      "a_en": "They are equal (4 or 8 bytes)",
+      "r": "المؤشر يخزن عنوان ذاكرة، والعناوين لها نفس الحجم دائماً.",
+      "r_en": "A pointer stores an address, and addresses have the same size regardless of type."
+    },
+    {
+      "cat": "tricky",
+      "q": "ماذا يحدث عند استدعاء `malloc` وعدم وجود ذاكرة كافية؟",
+      "q_en": "What happens when `malloc` is called and there is not enough memory?",
+      "a": "يعود بـ NULL",
+      "a_en": "It returns NULL",
+      "r": "يجب التحقق من ذلك دائماً.",
+      "r_en": "You must always check for this."
+    },
+    {
+      "cat": "tricky",
+      "q": "تعبير `*&p` يكافئ...؟",
+      "q_en": "The expression `*&p` is equivalent to what?",
+      "a": "p",
+      "a_en": "p",
+      "r": "العمليات تلغي بعضها (Address of, Value at).",
+      "r_en": "The operations cancel out (address-of and dereference)."
+    },
+    {
+      "cat": "tricky",
+      "q": "هل يمكن استخدام Binary Search على Linked List؟",
+      "q_en": "Can binary search be used on a linked list?",
+      "a": "نعم، لكنه غير فعال (O(N))",
+      "a_en": "Yes, but it is inefficient (O(N))",
+      "r": "بسبب عدم وجود وصول عشوائي (Random Access).",
+      "r_en": "Because there is no random access."
+    },
+    {
+      "cat": "tricky",
+      "q": "هل كل شجرة AVL هي شجرة BST؟",
+      "q_en": "Is every AVL tree a BST?",
+      "a": "نعم",
+      "a_en": "Yes",
+      "r": "AVL هي BST متزنة.",
+      "r_en": "An AVL tree is a balanced BST."
+    },
+    {
+      "cat": "tricky",
+      "q": "هل يمكن إعادة بناء شجرة ثنائية من In-order و Post-order؟",
+      "q_en": "Can a binary tree be reconstructed from in-order and post-order traversals?",
+      "a": "نعم",
+      "a_en": "Yes",
+      "r": "نحتاج اجتيازين أحدهما In-order لبناء الشجرة.",
+      "r_en": "Two traversals are sufficient; in-order helps locate roots/partitions."
+    },
+    {
+      "cat": "tricky",
+      "q": "لدمج K مصفوفات مرتبة حجم كل منها N، التعقيد هو؟",
+      "q_en": "To merge K sorted arrays each of size N, what is the time complexity?",
+      "a": "O(N * K * log K)",
+      "a_en": "O(N * K * log K)",
+      "r": "باستخدام Min-Heap.",
+      "r_en": "Using a min-heap."
+    },
+
+    {
+      "cat": "sort",
+      "q": "الحد الأدنى للترتيب بالمقارنة (Lower Bound)؟",
+      "q_en": "What is the lower bound for comparison-based sorting?",
+      "a": "O(N log N)",
+      "a_en": "O(N log N)",
+      "r": "لا يمكن كسر هذا الحاجز بطرق المقارنة العادية.",
+      "r_en": "This bound cannot be beaten by standard comparison-based methods."
+    },
+    {
+      "cat": "sort",
+      "q": "أي خوارزمية ترتيب تعمل في O(N)؟",
+      "q_en": "Which sorting algorithms can run in O(N)?",
+      "a": "Counting Sort / Radix Sort",
+      "a_en": "Counting Sort / Radix Sort",
+      "r": "بشروط خاصة (نطاق أرقام محدد).",
+      "r_en": "Under special conditions (e.g., limited numeric range)."
+    },
+    {
+      "cat": "linear",
+      "q": "Array vs Linked List: من أفضل في الـ Cache Locality؟",
+      "q_en": "Array vs Linked List: which has better cache locality?",
+      "a": "Array",
+      "a_en": "Array",
+      "r": "لأن عناصرها متجاورة في الذاكرة.",
+      "r_en": "Because its elements are contiguous in memory."
+    },
+    {
+      "cat": "trees",
+      "q": "B-Trees تستخدم عادة في...؟",
+      "q_en": "B-Trees are commonly used in what?",
+      "a": "قواعد البيانات وأنظمة الملفات",
+      "a_en": "Databases and file systems",
+      "r": "لتقليل عمليات القراءة من القرص.",
+      "r_en": "To reduce disk I/O operations."
+    },
+    {
+      "cat": "algo",
+      "q": "Interpolation Search يعمل بتعقيد...؟",
+      "q_en": "Interpolation Search runs with what complexity (under uniform distribution)?",
+      "a": "O(log log N)",
+      "a_en": "O(log log N)",
+      "r": "إذا كانت البيانات موزعة بانتظام.",
+      "r_en": "If the data is uniformly distributed."
+    }
+  ]
+}

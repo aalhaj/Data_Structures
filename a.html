@@ -245,8 +245,8 @@
   <script>
     /**
      * IMPORTANT:
-     * - ضع ملف qBank.json في نفس مجلد هذا الملف (نفس المسار).
-     * - بنية qBank.json المتوقعة:
+     * - ضع ملف q.json في نفس مجلد هذا الملف (نفس المسار).
+     * - بنية q.json المتوقعة:
      *   {
      *     "questions": [
      *       { "cat":"algo", "q":"...", "q_en":"...", "a":"...", "a_en":"...", "r":"...", "r_en":"..." }
@@ -277,7 +277,7 @@
           currentMode: 'Current mode: English',
           loading: 'Loading questions',
           loaded: 'Loaded',
-          failed: 'Failed to load qBank.json (check file path/JSON validity).'
+          failed: 'Failed to load q.json (check file path/JSON validity).'
         };
       }
       if (langMode === 'en_ar') {
@@ -293,7 +293,7 @@
           currentMode: 'Current mode: English with Arabic translation',
           loading: 'Loading questions',
           loaded: 'Loaded',
-          failed: 'Failed to load qBank.json (check file path/JSON validity).'
+          failed: 'Failed to load q.json (check file path/JSON validity).'
         };
       }
       // default Arabic UI
@@ -309,7 +309,7 @@
         currentMode: 'الوضع الحالي: العربية',
         loading: 'تحميل الأسئلة',
         loaded: 'تم التحميل',
-        failed: 'فشل تحميل qBank.json (تحقق من المسار وصحة JSON).'
+        failed: 'فشل تحميل q.json (تحقق من المسار وصحة JSON).'
       };
     }
 
@@ -520,7 +520,7 @@
 
       try {
         // IMPORTANT: file name as requested
-        const res = await fetch('qBank.json', { cache: 'no-store' });
+        const res = await fetch('q.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('HTTP ' + res.status);
 
         const data = await res.json();
@@ -541,7 +541,7 @@
           <div class="question-card" style="border-right-color: var(--accent);">
             <div class="q-header" style="color: var(--accent);">خطأ في تحميل بنك الأسئلة</div>
             <div class="reason-text">
-              تأكد أن ملف <strong>qBank.json</strong> موجود بجانب ملف الـ HTML، وأنه JSON صحيح.
+              تأكد أن ملف <strong>q.json</strong> موجود بجانب ملف الـ HTML، وأنه JSON صحيح.
               <div class="code-box">${escapeHtml(String(e))}</div>
               مثال تشغيل محلي صحيح: استخدم Live Server أو أي HTTP server (فتح الملف مباشرة file:// قد يمنع fetch).
             </div>
